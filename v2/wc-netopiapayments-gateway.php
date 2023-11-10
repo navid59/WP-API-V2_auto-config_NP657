@@ -4,8 +4,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// include_once __DIR__ . '/vendor/autoload.php';
-// include_once('lib/log.php');
 include_once('setting/static.php');
 include_once('lib/request.php');
 
@@ -25,8 +23,8 @@ class netopiapayments extends WC_Payment_Gateway {
         $this->netopiLogo             = NTP_PLUGIN_DIR . 'img/NETOPIA_Payments.svg';
         $this->has_fields             = true;
         $this->notify_url             = WC()->api_request_url( 'netopiapayments' );	// IPN URL - WC REST API
-        $this->envMod                 = MODE_STARTUP;
-        // $this->envMod                 = MODE_NORMAL;
+        // $this->envMod                 = MODE_STARTUP;
+        $this->envMod                 = MODE_NORMAL;
         
 
         /**
