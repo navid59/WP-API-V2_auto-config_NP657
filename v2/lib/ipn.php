@@ -66,14 +66,10 @@ class IPN extends Request{
     public function verifyIPN() {
 
         /**
-        * Default IPN response, 
-        * will change if there is any problem
+        * Define IPN response, 
+        * will update base on payment status
         */
-        $outputData = array(
-            'errorType'		=> self::ERROR_TYPE_NONE,
-            'errorCode' 	=> null,
-            'errorMessage'	=> ''
-        );
+        $outputData = array();
 
         /**
         *  Fetch all HTTP request headers
@@ -222,9 +218,11 @@ class IPN extends Request{
                 
                 case self::STATUS_PAID: // capturate (card)
                     /**
-                     * payment was confirmed; deliver goods
+                     * payment was paid; deliver goods
                      */
-                    $outputData['errorMessage']	= "payment was confirmed; deliver goods";
+                    $outputData['errorType']	= self::ERROR_TYPE_NONE;
+                    $outputData['errorCode']	= null;
+                    $outputData['errorMessage']	= "payment was paid; deliver goods";
                 break;
                 case self::STATUS_CANCELED: // void
                     /**
@@ -284,7 +282,8 @@ class IPN extends Request{
                     /**
                      * payment was confirmed; deliver goods
                      */
-                    $outputData['errorCode']	= self::STATUS_CONFIRMED;
+                    $outputData['errorType']	= self::ERROR_TYPE_NONE;
+                    $outputData['errorCode']	= null;
                     $outputData['errorMessage']	= "payment was confirmed; deliver goods";
                 break;
                 case self::STATUS_PENDING:
