@@ -101,12 +101,3 @@ register_activation_hook( __FILE__, 'plugin_activated' );
 function plugin_activated(){
 	add_option( 'woocommerce_netopiapayments_certifications', 'verify-and-regenerate' );
 }
-
-/**
- * Once after upgrade the plugin will execute
- * By "verify-regenerat" key will verify if certifications not exist
- * Then try to regenerated the certifications, if is neccessary
- */
-function setUpgradeStatus($upgrader_object, $options) {
-    update_option( 'woocommerce_netopiapayments_certifications', 'verify-and-regenerate' );
-}
