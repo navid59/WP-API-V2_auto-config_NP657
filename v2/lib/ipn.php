@@ -89,7 +89,6 @@ class IPN extends Request{
             echo 'IPN__Verification-token is missing in HTTP HEADER' . PHP_EOL;
             exit;
             }
-
         
         /**
         * Analising verification token
